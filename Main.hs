@@ -4,6 +4,7 @@ module Main where
   import Control.Monad.Except
   import System.Directory
   import Types.Element
+  import Core.Build
 
   readFile' :: FilePath -> ExceptT String IO String
   readFile' path = do
@@ -28,4 +29,4 @@ module Main where
     res <- runExceptT (parseFile "tests/Hello.bf")
     case res of
       Left e -> fail e
-      Right x -> print x
+      Right x -> putStrLn (buildFromTree x)
