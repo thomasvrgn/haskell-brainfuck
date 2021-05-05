@@ -33,7 +33,8 @@ module Core.Parser where
   parseLoop = Loop <$> between (char '[') (char ']') parseLine
 
   parse :: String -> Either ParseError Program
-  parse = runP (parseLine <* eof) () ""
+  parse s = removeComments <$> parsed
+    where parsed = runP (parseLine <* eof) () "" s
 
   removeComments :: Program -> Program
   removeComments [] = []
