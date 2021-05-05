@@ -8,3 +8,7 @@ module Types.Element where
     | Output         -- (.)
     | Input          -- (,)
     | Loop [Element] -- ([...])
+    | Comment        -- Any other char
+    deriving Show
+
+  type Program = [Element]
